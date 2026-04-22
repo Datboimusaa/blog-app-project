@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #6367f1;
+  --color-primary-lighter: #edf1ff;
+  --color-primary-darker: #4b54c8;
+  --color-secondary: #1f2936;
+  --color-secondary-lighter: #374151;
+  --color-success: #16b882;
+  --color-success-lighter: #e8f9f2;
+  --color-danger: #ef4448;
+}
+
+.active {
+  background-color: #6367f1;
+}
+
+tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+td {
+  padding: 1rem;
+}
+
+th {
+  text-align: left;
+  padding: 0.5rem;
+}
