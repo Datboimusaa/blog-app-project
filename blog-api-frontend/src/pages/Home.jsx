@@ -8,7 +8,7 @@ function Home() {
     const [editId, setEditId] = useState(null);
     const [editTitle, setEditTitle] = useState("");
     const [editContent, setEditContent] = useState("");
-  
+
 
     const token = localStorage.getItem("token");
     const userId = JSON.parse(atob(token.split(".")[1])).id;
@@ -79,7 +79,26 @@ function Home() {
             console.error(error);
         }
     };
+    
+    const handleLikePost = async (postId) => {
+        try {
+            const res = await axios.post(
+                `http://localhost:5000/api/likes/${postId}`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
 
+         
+            getPosts();
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
     return (
         <section className="h-auto px-5 bg-slate-50">
 
@@ -123,7 +142,8 @@ function Home() {
                         user={post.author.name}
                         title={post.title}
                         content={post.content}
-
+                        post={post}
+                        handleLike={() => handleLikePost(post._id)}
                         handleEdit={
                             post.author._id === userId
                                 ? () => handleEditPost(post)
