@@ -136,7 +136,7 @@ function Details() {
                 />
                 <div className="bg-slate-100 rounded-xl px-3 py-2 w-full">
                   <p className="text-sm font-semibold">
-                    {c.user?.name || "User"}
+                    {c.author?.name || "User"}
                   </p>
                   <p className="text-sm text-gray-700">{c.content}</p>
                 </div>

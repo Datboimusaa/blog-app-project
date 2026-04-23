@@ -40,7 +40,7 @@ function Post({ user, title, content, handleEdit, handleDelete, id, handleLike, 
             <p className="py-4">{content}</p>
 
             
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-6" onClick={(e) => e.stopPropagation()}>
 
                 <button
                     onClick={handleLike}

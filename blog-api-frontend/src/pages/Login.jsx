@@ -3,9 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { IoMailOpen } from "react-icons/io5";
 import { TbLockPassword } from "react-icons/tb";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Login = () => {
     const navigate = useNavigate()
+
+    const {login} = useContext(AuthContext)
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -14,22 +18,16 @@ const Login = () => {
 
     const handleLogin = async () => {
         try {
-            const res = await axios.post(
-                "http://localhost:5000/api/auth/login",
-                {
-                    email,
-                    password
-                }
-            )
+            const res = await login({email, password})
 
-            localStorage.setItem("token", res.data.token)
-
+            if (res) {  
             setMessage("Connexion réussie ")
             setIsSuccess(true)
 
             setTimeout(() => {
-                navigate("/Home")
+                navigate("/home")
             }, 1500)
+        }
 
         } catch (error) {
             setMessage("Email ou mot de passe incorrect ")
