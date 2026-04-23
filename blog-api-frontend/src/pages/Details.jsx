@@ -72,7 +72,7 @@ function Details() {
               alt="user"
             />
             <span className="font-semibold">
-              {post?.user?.name || "User"}
+              {post.author.name || "User"}
             </span>
           </div>
 
