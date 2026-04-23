@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 function Header() {
     const navigate = useNavigate();
     return (
-        <header className="fixed-top col-span-2">
+        <header className="col-span-full">
             <nav className="flex items center px-5 justify-between py-4 border-b border-gray-200 shadow">
-                <a href="/" className="text-2xl text-black font-bold">My blog</a>
+                <a href="/" className="text-2xl text-black font-bold font-mono">My blog</a>
                 <div className="flex items-center gap-4">
                     <button className="relative cursor-pointer">
                         <img src="https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg"

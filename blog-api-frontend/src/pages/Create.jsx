@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState } from "react"
 import {useNavigate} from "react-router-dom"
 import { IoMdArrowBack } from "react-icons/io";
-import toast, {Toaster} from "react-hot-toast";
 
 function Create() {
     const [title, setTitle] = useState("");
@@ -22,7 +21,7 @@ function Create() {
             });
             console.log(response.data);
             if(response.status === 201) {
-                toast.success("Post créé avec succès");
+                alert("Post créé avec succès");
             }
             setTitle("");
             setContent("");
@@ -35,9 +34,9 @@ function Create() {
 
         <section>
             <div className="py-2">
-               <button className="ext-white cursor-pointer px-4 py-2 -justify-self-start rounded-xl font-bold" onClick={() => window.history.back()}> <IoMdArrowBack className="inline" />Retour</button>
+               <button className=" cursor-pointer px-4 py-2 -justify-self-start rounded-xl font-bold" onClick={() => window.history.back()}> <IoMdArrowBack className="inline" />Retour</button>
             </div>
-            <form className="w-2xl p-4 px-8" onSubmit={handleSubmit}>
+            <form className="max-w-2xl p-4 px-8" onSubmit={handleSubmit}>
                 <h2 className="font-bold text-xl py-4">
                     Creer un post
                 </h2>
@@ -60,7 +59,6 @@ function Create() {
                     <button className="bg-black text-white cursor-pointer px-4 py-2 rounded-xl font-bold" type="submit"> Post </button>
                 </div>
             </form>
-            {/* <Toaster position="top-center"/> */}
         </section>
     )
 }

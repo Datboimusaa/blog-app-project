@@ -81,7 +81,7 @@ function Home() {
     };
 
     return (
-        <section className="h-screen px-5">
+        <section className="h-auto px-5 bg-slate-50">
 
 
             {editId && (
@@ -116,7 +116,7 @@ function Home() {
                 </div>
             )}
 
-            <div className="flex flex-col py-2">
+            <div className="flex flex-col gap-2 py-2">
                 {posts.map((post) => (
                     <Post
                         key={post._id}
@@ -130,6 +130,7 @@ function Home() {
                                 : null
                         }
                         handleDelete={() => handleDeletePost(post._id)}
+                        id={post._id}
                     />
                 ))}
             </div>

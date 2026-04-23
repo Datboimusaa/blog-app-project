@@ -35,7 +35,6 @@ const Login = () => {
             setMessage("Email ou mot de passe incorrect ")
             setIsSuccess(false)
 
-            // disparaît après 3s
             setTimeout(() => {
                 setMessage("")
             }, 3000)

@@ -41,7 +41,7 @@ const Register = () => {
                 {
                     name,
                     email,
-                    assword
+                    password
                 }
             )
 
