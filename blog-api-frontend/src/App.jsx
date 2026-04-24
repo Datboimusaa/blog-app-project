@@ -6,6 +6,7 @@ import Create from './pages/Create.jsx';
 import Home from './pages/Home.jsx';
 import Details from './pages/Details.jsx';
 import PrivateRoute from './pages/privateRoute.jsx';
+import AdminRoute from './pages/AdminRoute.jsx';
 import Dashboard from './components/layout/Dashboard.jsx';
 import { AuthProvider } from './contexts/AuthContext.jsx';
 import { PostProvider } from './contexts/PostContext.jsx';
@@ -28,10 +29,12 @@ const App = () => {
                 <Route path="/create" element={<Create />} />
                 <Route path="/posts/:id" element={<Details />} />
               </Route>
-              <Route element={<AdminDashboard />} >
-                <Route path="/admin/home" element={<AdminHome />} />
-                <Route path="/admin/users" element={<Users />} />
-                <Route path="/admin/settings" element={<Settings />} />
+              <Route element={<AdminRoute />}>
+                <Route element={<AdminDashboard />} >
+                  <Route path="/admin/home" element={<AdminHome />} />
+                  <Route path="/admin/users" element={<Users />} />
+                  <Route path="/admin/settings" element={<Settings />} />
+                </Route>
               </Route>
             </Route>
           </Routes>
