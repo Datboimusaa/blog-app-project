@@ -1,5 +1,5 @@
 import { HiDotsVertical } from "react-icons/hi";
-import { FaRegHeart, FaRegComment, FaHeart  } from "react-icons/fa";
+import { FaRegHeart, FaRegComment, FaHeart } from "react-icons/fa";
 import { FiEdit2 } from "react-icons/fi";
 import { MdOutlineDelete } from "react-icons/md";
 import { useState, useEffect } from "react";
@@ -14,17 +14,22 @@ function Post({ user, title, content, handleEdit, handleDelete, id, handleLike, 
     const [liked, setLiked] = useState(false);
     const navigate = useNavigate();
 
-    const GetPostsByID= async () =>  {
-        const res = await axios.get(`http://localhost:5000/api/comments/post/${id}`); 
+    const GetPostsByID = async () => {
+        const res = await axios.get(`http://localhost:5000/api/comments/post/${id}`);
         return res.data.length;
     }
 
     useEffect(() => {
-       setCount(GetPostsByID());
+        const fetchCount = async () => {
+            const count = await GetPostsByID();
+            setCount(count);
+        };
+
+        fetchCount();
     }, [id]);
 
     return (
-        <div className="p-4 bg-white cursor-pointer w-[95%] hover:bg-gray-100 shadow-lg rounded-xl" onClick={() => navigate(`/posts/${id}`)}>
+        <div className="p-4 bg-white border border-black cursor-pointer w-[95%] hover:bg-gray-100 shadow-lg rounded-[255px_15px_225px_15px_/_15px_225px_15px_255px]" onClick={() => navigate(`/posts/${id}`)}>
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <img
@@ -53,7 +58,7 @@ function Post({ user, title, content, handleEdit, handleDelete, id, handleLike, 
             <h4 className="font-bold text-lg py-2">{title}</h4>
             <p className="py-4">{content}</p>
 
-            
+
             <div className="flex items-center gap-6" onClick={(e) => e.stopPropagation()}>
 
                 <button

@@ -7,7 +7,7 @@ function Header() {
     return (
         <header className="col-span-full">
             <nav className="flex items center px-5 justify-between py-4 border-b border-gray-200 shadow">
-                <a href="/" className="text-2xl text-black font-bold font-mono">My blog</a>
+                <a href="/" className="text-2xl text-black font-bold font-['Sekuya']">My blog</a>
                 <div className="flex items-center gap-4">
                     <button className="relative cursor-pointer">
                         <img src="https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg"
@@ -16,6 +16,7 @@ function Header() {
                     </button>
                     <button className="cursor-pointer" onClick={() => {
                         localStorage.removeItem("token");
+                        localStorage.removeItem("role");
                         navigate("/")
                     }}>
                         <MdLogout size={24} />
