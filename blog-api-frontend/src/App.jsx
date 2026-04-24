@@ -29,14 +29,14 @@ const App = () => {
                 <Route path="/create" element={<Create />} />
                 <Route path="/posts/:id" element={<Details />} />
               </Route>
-              <Route element={<AdminRoute />}>
+            </Route>
+            <Route element={<AdminRoute />}>
                 <Route element={<AdminDashboard />} >
                   <Route path="/admin/home" element={<AdminHome />} />
                   <Route path="/admin/users" element={<Users />} />
                   <Route path="/admin/settings" element={<Settings />} />
                 </Route>
               </Route>
-            </Route>
           </Routes>
         </Router>
       </PostProvider>
