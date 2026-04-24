@@ -28,7 +28,6 @@ const Login = () => {
             const role = localStorage.getItem("role");
 
             setTimeout(() => {
-                const role = localStorage.getItem("role");
                 if (role === "admin") {
                     navigate("/admin/home")
                 } else {
