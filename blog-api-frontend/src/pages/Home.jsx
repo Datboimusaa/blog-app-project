@@ -1,8 +1,11 @@
 import axios from "axios";
 import Post from "../components/ui/Post.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { PostContext } from "../contexts/PostContext.jsx";
 
 function Home() {
+
+    const { likePost} = useContext(PostContext);
 
     const [posts, setPosts] = useState([]);
     const [editId, setEditId] = useState(null);
@@ -21,6 +24,8 @@ function Home() {
 
 
     };
+
+    
 
     const getPosts = async () => {
         try {
@@ -135,7 +140,7 @@ function Home() {
                 </div>
             )}
 
-            <div className="flex flex-col gap-2 py-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-2">
                 {posts.map((post) => (
                     <Post
                         key={post._id}
@@ -143,7 +148,7 @@ function Home() {
                         title={post.title}
                         content={post.content}
                         post={post}
-                        handleLike={() => handleLikePost(post._id)}
+                        handleLike={() => {handleLikePost(post._id)}}
                         handleEdit={
                             post.author._id === userId
                                 ? () => handleEditPost(post)

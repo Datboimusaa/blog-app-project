@@ -1,16 +1,30 @@
 import { HiDotsVertical } from "react-icons/hi";
-import { FaRegHeart, FaRegComment } from "react-icons/fa";
+import { FaRegHeart, FaRegComment, FaHeart  } from "react-icons/fa";
 import { FiEdit2 } from "react-icons/fi";
 import { MdOutlineDelete } from "react-icons/md";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+
 function Post({ user, title, content, handleEdit, handleDelete, id, handleLike, post }) {
 
     const [showMenu, setShowMenu] = useState(false);
+    const [count, setCount] = useState(0);
+    const [liked, setLiked] = useState(false);
     const navigate = useNavigate();
 
+    const GetPostsByID= async () =>  {
+        const res = await axios.get(`http://localhost:5000/api/comments/post/${id}`); 
+        return res.data.length;
+    }
+
+    useEffect(() => {
+       setCount(GetPostsByID());
+    }, [id]);
+
     return (
-        <div className="p-4 bg-white cursor-pointer w-[95%] hover:bg-gray-100 rounded-xl" onClick={() => navigate(`/posts/${id}`)}>
+        <div className="p-4 bg-white cursor-pointer w-[95%] hover:bg-gray-100 shadow-lg rounded-xl" onClick={() => navigate(`/posts/${id}`)}>
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <img
@@ -52,7 +66,9 @@ function Post({ user, title, content, handleEdit, handleDelete, id, handleLike, 
 
                 <button className="flex items-center gap-2 text-gray-500 hover:text-blue-500 cursor-pointer">
                     <FaRegComment />
-                    <span>Comment</span>
+                    <span>
+                        {count || 0}
+                    </span>
                 </button>
 
             </div>

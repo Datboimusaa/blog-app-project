@@ -9,6 +9,10 @@ import PrivateRoute from './pages/privateRoute.jsx';
 import Dashboard from './components/layout/Dashboard.jsx';
 import { AuthProvider } from './contexts/AuthContext.jsx';
 import { PostProvider } from './contexts/PostContext.jsx';
+import AdminDashboard from './components/layout/AdminDashboard.jsx';
+import AdminHome from './pages/AdminHome.jsx';
+import Users from './pages/Users.jsx';
+import Settings from './pages/Settings.jsx';
 
 const App = () => {
   return (
@@ -23,6 +27,11 @@ const App = () => {
                 <Route path="/home" element={<Home />} />
                 <Route path="/create" element={<Create />} />
                 <Route path="/posts/:id" element={<Details />} />
+              </Route>
+              <Route element={<AdminDashboard />} >
+                <Route path="/admin/home" element={<AdminHome />} />
+                <Route path="/admin/users" element={<Users />} />
+                <Route path="/admin/settings" element={<Settings />} />
               </Route>
             </Route>
           </Routes>

@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
     const res = await API.post("/auth/login", data);
 
     localStorage.setItem("token", res.data.token);
+    localStorage.setItem("role", res.data.user.role);
     setUser(res.data.user);
     return true
   };
@@ -20,6 +21,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
     setUser(null);
   };
 

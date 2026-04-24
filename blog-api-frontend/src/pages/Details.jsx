@@ -84,7 +84,7 @@ function Details() {
               <FaRegHeart /> Like
             </button>
             <button className="flex items-center gap-2 hover:text-blue-500">
-              <FaRegComment /> Comment
+              <FaRegComment /> {comments.length}
             </button>
           </div>
         </div>
