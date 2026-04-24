@@ -9,8 +9,8 @@ import { AuthContext } from "../contexts/AuthContext";
 const Login = () => {
     const navigate = useNavigate()
 
-    const {login} = useContext(AuthContext)
-    const role = localStorage.getItem("role");
+    const {login} = useContext(AuthContext);
+    
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -24,6 +24,8 @@ const Login = () => {
             if (res) {  
             setMessage("Connexion réussie ")
             setIsSuccess(true)
+
+            const role = localStorage.getItem("role");
 
             setTimeout(() => {
                 if (role === "admin") {
