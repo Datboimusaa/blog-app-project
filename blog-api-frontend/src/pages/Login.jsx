@@ -10,7 +10,6 @@ const Login = () => {
     const navigate = useNavigate()
 
     const {login} = useContext(AuthContext)
-    const role = localStorage.getItem("role");
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -26,6 +25,7 @@ const Login = () => {
             setIsSuccess(true)
 
             setTimeout(() => {
+                const role = localStorage.getItem("role");
                 if (role === "admin") {
                     navigate("/admin/home")
                 } else {

@@ -2,8 +2,43 @@ const User = require('../models/User');
 
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.find().select('-password');
-    res.json(users);
+    const hasPaginationQuery =
+      typeof req.query.page !== 'undefined' || typeof req.query.limit !== 'undefined';
+
+    // Backward compatible:
+    // - No query params -> return array (old behavior)
+    // - With page/limit -> return { users, pagination }
+    if (!hasPaginationQuery) {
+      const users = await User.find().select('-password');
+      return res.json(users);
+    }
+
+    const page = Math.max(parseInt(req.query.page, 10) || 1, 1);
+    const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 10, 1), 100);
+    const skip = (page - 1) * limit;
+
+    const [users, total] = await Promise.all([
+      User.find()
+        .select('-password')
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit),
+      User.countDocuments()
+    ]);
+
+    const totalPages = Math.max(Math.ceil(total / limit), 1);
+
+    res.json({
+      users,
+      pagination: {
+        currentPage: page,
+        totalPages,
+        totalUsers: total,
+        limit,
+        hasNextPage: page < totalPages,
+        hasPrevPage: page > 1
+      }
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
