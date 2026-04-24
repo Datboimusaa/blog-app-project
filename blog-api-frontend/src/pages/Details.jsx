@@ -61,10 +61,10 @@ function Details() {
 
   return (
     <section className="bg-slate-100 min-h-screen py-10 px-4">
-      <div className="max-w-2xl mx-auto space-y-6">
+      <div className=" mx-auto space-y-6">
 
         {/* POST CARD */}
-        <div className="bg-white rounded-2xl shadow-sm p-6">
+        <div className="bg-white rounded-2xl shadow-sm p-6 border border-black rounded-[255px_15px_225px_15px_/_15px_225px_15px_255px]">
           <div className="flex items-center gap-3 mb-4">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
@@ -90,7 +90,7 @@ function Details() {
         </div>
 
         {/* COMMENTS */}
-        <div className="bg-white rounded-2xl shadow-sm p-6">
+        <div className="bg-white rounded-2xl shadow-sm p-6 border border-black rounded-[255px_15px_225px_15px_/_15px_225px_15px_255px]">
           <h3 className="font-semibold mb-4">
             Comments ({comments.length})
           </h3>
