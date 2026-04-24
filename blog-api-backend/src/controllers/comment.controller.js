@@ -7,7 +7,9 @@ exports.create = async (req, res) => {
       req.user.id
     );
 
-    res.status(201).json(comment);
+    const populatedComment = await comment.populate("author", "name")
+
+    res.status(201).json(populatedComment);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

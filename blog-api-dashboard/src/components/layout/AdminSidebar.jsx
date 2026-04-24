@@ -1,12 +1,11 @@
 import { FaHome, FaUsers, FaCog } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 
-function Sidebar() {
+function AdminSidebar() {
     return (
-        <aside className="bg-secondary flex flex-col">
+        <aside className="bg-secondary flex flex-col hidden md:flex">
             <div className="py-4 px-4 border-b border-gray-700">
                 <h2 className="text-xl text-white font-bold flex items-center">
-
                     Menu
                 </h2>
             </div>
@@ -20,7 +19,6 @@ function Sidebar() {
                 >
                     <FaHome size={18} />
                     <span>Dashboard</span>
-
                 </NavLink>
                 <NavLink
                     to="/users"
@@ -31,7 +29,6 @@ function Sidebar() {
                 >
                     <FaUsers size={18} />
                     <span>Utilisateurs</span>
-
                 </NavLink>
                 <NavLink
                     to="/settings"
@@ -42,11 +39,10 @@ function Sidebar() {
                 >
                     <FaCog size={18} />
                     <span>Paramètres</span>
-
                 </NavLink>
             </div>
         </aside>
     )
 }
 
-export default Sidebar
+export default AdminSidebar
