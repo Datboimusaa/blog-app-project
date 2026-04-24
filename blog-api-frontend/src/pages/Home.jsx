@@ -156,6 +156,8 @@ function Home() {
                         }
                         handleDelete={() => handleDeletePost(post._id)}
                         id={post._id}
+                        userId={userId}
+                        isLiked={post.likes?.includes(userId)}
                     />
                 ))}
             </div>

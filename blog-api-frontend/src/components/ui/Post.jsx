@@ -7,11 +7,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
-function Post({ user, title, content, handleEdit, handleDelete, id, handleLike, post }) {
+function Post({ user, title, content, handleEdit, handleDelete, id, handleLike, post, userId, isLiked }) {
 
     const [showMenu, setShowMenu] = useState(false);
     const [count, setCount] = useState(0);
-    const [liked, setLiked] = useState(false);
     const navigate = useNavigate();
 
     const GetPostsByID = async () => {
@@ -63,9 +62,11 @@ function Post({ user, title, content, handleEdit, handleDelete, id, handleLike, 
 
                 <button
                     onClick={handleLike}
-                    className="flex items-center gap-2 text-gray-500 hover:text-red-500 cursor-pointer"
+                    className={`flex items-center gap-2 cursor-pointer ${
+                        isLiked ? 'text-red-500' : 'text-gray-500 hover:text-red-500'
+                    }`}
                 >
-                    <FaRegHeart />
+                    {isLiked ? <FaHeart /> : <FaRegHeart />}
                     <span>{post.likes?.length || 0}</span>
                 </button>
 
