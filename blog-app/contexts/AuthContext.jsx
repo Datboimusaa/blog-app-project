@@ -1,38 +1,65 @@
-import { createContext, useState } from "react";
-import API from "../services/api";
+import { createContext, useContext, useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { loginUser, registerUser } from "../services/api";
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+export function AuthProvider({ children }) {
+  const [user, setUser]     = useState(null);
+  const [token, setToken]   = useState(null);
+  const [loading, setLoading] = useState(true); // checking stored session
 
-  const login = async (data) => {
-    const res = await API.post("/auth/login", data);
+  // On app start, restore saved session
+  useEffect(() => {
+    const restoreSession = async () => {
+      try {
+        const savedToken = await AsyncStorage.getItem("token");
+        const savedUser  = await AsyncStorage.getItem("user");
+        if (savedToken && savedUser) {
+          setToken(savedToken);
+          setUser(JSON.parse(savedUser));
+        }
+      } catch (err) {
+        console.error("Failed to restore session:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    restoreSession();
+  }, []);
 
-    localStorage.setItem("token", res.data.token);
-    localStorage.setItem("role", res.data.user.role);
-    setUser(res.data.user);
-    return true
+  const login = async (email, password) => {
+    const res = await loginUser({ email, password });
+    const { token: newToken, user: newUser } = res.data;
+
+    await AsyncStorage.setItem("token", newToken);
+    await AsyncStorage.setItem("user", JSON.stringify(newUser));
+    setToken(newToken);
+    setUser(newUser);
   };
 
-  const register = async (data) => {
-    await API.post("/auth/register", data);
+  const register = async (name, email, password) => {
+    const res = await registerUser({ name, email, password });
+    const { token: newToken, user: newUser } = res.data;
+
+    await AsyncStorage.setItem("token", newToken);
+    await AsyncStorage.setItem("user", JSON.stringify(newUser));
+    setToken(newToken);
+    setUser(newUser);
   };
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
+  const logout = async () => {
+    await AsyncStorage.removeItem("token");
+    await AsyncStorage.removeItem("user");
+    setToken(null);
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{
-      user,
-      login,
-      register,
-      logout
-    }}>
+    <AuthContext.Provider value={{ user, token, loading, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
-};
+}
+
+export const useAuth = () => useContext(AuthContext);
