@@ -5,6 +5,4 @@ connectDB();
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(5000, '0.0.0.0', () => { 
-  console.log('API is running')
- })
+app.listen(process.env.PORT || 5000, () => { console.log("API is running") })
