@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "http://localhost:5000/api"
+    baseURL: "https://blog-app-project-i9a0.onrender.com/api"
 });
 
 // Ajouter token automatiquement

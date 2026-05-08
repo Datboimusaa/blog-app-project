@@ -11,7 +11,7 @@ function Users() {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/users");
+                const response = await axios.get("https://blog-app-project-i9a0.onrender.com/api/users");
                 setUsers(response.data);
                 setDataLoaded(true);
             } catch (error) {

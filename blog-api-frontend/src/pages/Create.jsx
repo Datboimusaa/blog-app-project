@@ -11,7 +11,7 @@ function Create() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:5000/api/posts", {
+            const response = await axios.post("https://blog-app-project-i9a0.onrender.com/api/posts", {
                 title,
                 content
             }, {

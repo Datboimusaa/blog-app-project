@@ -11,7 +11,7 @@ function Home() {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/stats");
+                const response = await axios.get("https://blog-app-project-i9a0.onrender.com/api/stats");
                 setStats(response.data);
                 setDataLoaded(true);
             } catch (error) {

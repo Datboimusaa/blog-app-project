@@ -18,10 +18,10 @@ function Details() {
         setLoading(true);
 
         const [postRes, commentsRes] = await Promise.all([
-          axios.get(`http://localhost:5000/api/posts/${id}`, {
+          axios.get(`https://blog-app-project-i9a0.onrender.com/api/posts/${id}`, {
             headers: { Authorization: `Bearer ${token}` }
           }),
-          axios.get(`http://localhost:5000/api/comments/post/${id}`, {
+          axios.get(`https://blog-app-project-i9a0.onrender.com/api/comments/post/${id}`, {
             headers: { Authorization: `Bearer ${token}` }
           })
         ]);
@@ -43,7 +43,7 @@ function Details() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/comments",
+        "https://blog-app-project-i9a0.onrender.com/api/comments",
         { post: id, content: commentText },
         { headers: { Authorization: `Bearer ${token}` } }
       );

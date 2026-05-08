@@ -29,7 +29,7 @@ function Home() {
 
     const getPosts = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/posts", {
+            const response = await axios.get("https://blog-app-project-i9a0.onrender.com/api/posts", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -47,7 +47,7 @@ function Home() {
     const handleUpdatePost = async () => {
         try {
             const res = await axios.put(
-                `http://localhost:5000/api/posts/${editId}`,
+                `https://blog-app-project-i9a0.onrender.com/api/posts/${editId}`,
                 {
                     title: editTitle,
                     content: editContent
@@ -72,7 +72,7 @@ function Home() {
 
     const handleDeletePost = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/posts/${id}`, {
+            await axios.delete(`https://blog-app-project-i9a0.onrender.com/api/posts/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -88,7 +88,7 @@ function Home() {
     const handleLikePost = async (postId) => {
         try {
             const res = await axios.post(
-                `http://localhost:5000/api/likes/${postId}`,
+                `https://blog-app-project-i9a0.onrender.com/api/likes/${postId}`,
                 {},
                 {
                     headers: {
