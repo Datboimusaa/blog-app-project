@@ -23,7 +23,7 @@ export default function CreatePostScreen() {
   const handleSubmit = async () => {
     if (!title.trim() || !content.trim()) {
       Alert.alert("Validation", "Both title and content are required.");
-      return
+      return;
     }
 
     setLoading(true);
